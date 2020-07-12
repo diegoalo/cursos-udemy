@@ -58,8 +58,6 @@ a la que se refiere. -->
             Phasellus aliquam lectus urna, nec sodales eros consequat sed.
         </p>
 
-        
-
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Nunc eu neque rhoncus, lacinia nisl at, aliquam quam. Ut aliquam iaculis luctus. 
@@ -70,6 +68,14 @@ a la que se refiere. -->
             Nullam suscipit ipsum neque, at sollicitudin leo interdum vitae. 
             Phasellus aliquam lectus urna, nec sodales eros consequat sed.
         </p>
+
+        <hr/>
+
+        <h2>Imágenes en HTML</h2>
+        <!-- Incrustar imágenes en HTML
+        alt: Texto alternativo si la imagen no carga
+        title: pop-up pequeño que nos dice que es esa imagen -->
+        <img alt = "Imagen de un tigre" title = "Imagen de un tigre" src = "./imagenes/tigre.jpg" width="455px"/>
 
         <hr/>
 
@@ -86,6 +92,33 @@ a la que se refiere. -->
             Nullam suscipit ipsum neque, at sollicitudin leo interdum vitae. </blockquote> 
             Phasellus aliquam lectus urna, <i>nec sodales eros consequat sed.</i></span>
         </p>
+
+        <!-- Formularios -->
+        <h3>Formulario</h3>
+        <form>
+            <p>
+                <label for = "nombre">Nombre</label>
+                <input type = "text" name = "nombre" placeholder="Escribe tu nombre"/>
+            </p>
+             
+            <p>
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcion"></textarea>
+            </p>
+
+            <input type="radio" name="genero" value="hombre">Hombre <br/>
+            <input type="radio" name="genero" value="mujer">Mujer <br/>
+            <input type="radio" name="genero" value="prefiero no decirlo">Prefiero no decirlo <br/>
+
+            <select name = "genero_2">
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+            </select>
+
+            <input type="submit" value="Enviar respuesta"/>
+            
+        </form>
 
         <!-- Creamos listas. Hay dos tipos: ordenadas y desordenadas -->
         <h3>Listado de frutas</h3>
@@ -109,6 +142,30 @@ a la que se refiere. -->
                 <li>Pera</li>
                 <li>Sandía</li>
             </ul>
+
+            <!-- Tablas -->
+            <h3>Tablas</h3>
+            <table border="1">
+                <!-- Fila -->
+                <tr> 
+                    <!-- Columna 
+                    Para la primera columna usamos th para resaltar las categorías-->
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>País</th>
+                </tr>
+                <tr> 
+                    <td>Diego</td>
+                    <td>Alonso Megías</td>
+                    <td>España</td>
+                </tr>
+                <tr> 
+                    <td>David</td>
+                    <!-- Para modificar el tamaño de una columna usamos el atributo colspan -->
+                    <td colspan="2">Bisbal</td>
+                </tr>
+
+            </table>
 
     </body>
 
