@@ -161,7 +161,7 @@ body {
 #content {
     width: 70%;
     float: left;
-    min-height: 850px;
+    min-height: 650px;
     margin-right: 20px;
 }
 
@@ -175,7 +175,7 @@ body {
 .sidebar-item h3 {
     font-size: 20px;
     margin: 0px;
-    border-bottom: 1px solid #585B5D;
+    border-bottom: 1px solid #269cbd;
     margin-bottom: 10px;
     padding: 10px;
 }
@@ -239,4 +239,58 @@ input[type='text']:focus{
     padding: 0px;
 }
 
+.article-item {
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    height: 120px;
+    text-align: left;
+}
 
+.article-item .image-wrap {
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    float: left;
+    margin-right: 15px;
+    border: 1 px solid #ccc;
+    border-radius: 5px;
+}
+
+.article-item .image-wrap img {
+    height: 100%;
+    text-align: center;
+}
+
+.article-item h2{
+    display:block;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 7px;
+
+}
+
+.article-item .date {
+    display: block;
+    width: 100%;
+    color: #444;
+}
+
+.article-item a{
+    display:block;
+    color: #269cbd;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.article-item a:hover {
+    text-decoration: underline;
+}
+
+.subheader {
+    font-size: 38px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}

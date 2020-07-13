@@ -57,10 +57,41 @@
 
             <div class="center">
                 <section id="content">
-                    <h2>Últimos articulos</h2>
-                    <!--últimos articulos: listado-->
-                </section>
+                    <h2 class="subheader">Últimos articulos</h2>
+
+                    <div id="articles">
+                     <!--últimos articulos: listado-->
+                        <article class="article-item" id="article-template">
+                            <div class="image-wrap">
+                            <img src="./assets/images/ejemplo.jpg" alt="Cuentame" title="Cuentame"/>
+
+                            </div>
+
+                            <h2>Artículo de prueba</h2>
+                            <span class="date">Hace 5 minutos</span>
+                            <a href="#">Leer más</a>
+
+                            <div id="clearfix"></div>
+                            </article>
+                            <!--Se añaden artículos con JS-->
+                    </div>
                 
+                    <!--Función JavaScript para cargar los artículos-->
+                    <script type="text/javascript" id="article-template">
+                        window.addEventListener("load", function(){
+                            var template = document.getElementById("article-template");
+                            var articles = document.getElementById("articles");
+                            for (i=1;i<=5;i++){
+                                var clonado = template.cloneNode(true);
+                                clonado.removeAttribute("id");
+                                var h2 = clonado.getElementsByTagName("h2")[0];
+                                h2.innerHTML = h2.textContent + ' ' + i;
+                                articles.appendChild(clonado);
+                            }});   
+                    </script>
+
+                </section>
+
                 <!--Etiqueta usada para los sidebars-->
                 <aside id="sidebar">
                     <div id="nav-blog" class="sidebar-item">
