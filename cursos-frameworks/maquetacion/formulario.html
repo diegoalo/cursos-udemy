@@ -50,46 +50,38 @@
                 <div class="clearfix"></div>
             </div>
         </header>
-            <div id="slider" class="slider-big">
-                <h1>Bienvenido al Master en Frameworks para JS</h1>
-                <a href="#" class="btn-white">Blog</a>
-            </div>
 
             <div class="center">
                 <section id="content">
-                    <h2 class="subheader">Últimos articulos</h2>
+                    <h1 class="subheader">Formulario</h1>
 
-                    <div id="articles">
-                     <!--últimos articulos: listado-->
-                        <article class="article-item" id="article-template">
-                            <div class="image-wrap">
-                            <img src="./assets/images/ejemplo.jpg" alt="Cuentame" title="Cuentame"/>
+                    <form class="mid-form" id="contacto">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                                <input type="text" name="nombre" />
+                        </div>
 
-                            </div>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos</label>
+                                <input type="text" name="nombre" />
+                        </div>
 
-                            <h2>Artículo de prueba</h2>
-                            <span class="date">Hace 5 minutos</span>
-                            <a href="#">Leer más</a>
+                        <div class="form-group">
+                            <label for="bio">Biografía</label>
+                                <textarea name="bio"></textarea>
+                        </div>
 
-                            <div id="clearfix"></div>
-                            </article>
-                            <!--Se añaden artículos con JS-->
-                    </div>
-                
-                    <!--Función JavaScript para cargar los artículos-->
-                    <script type="text/javascript" id="article-template">
-                        window.addEventListener("load", function(){
-                            var template = document.getElementById("article-template");
-                            var articles = document.getElementById("articles");
-                            for (i=1;i<=5;i++){
-                                var clonado = template.cloneNode(true);
-                                clonado.removeAttribute("id");
-                                var h2 = clonado.getElementsByTagName("h2")[0];
-                                h2.innerHTML = h2.textContent + ' ' + i;
-                                articles.appendChild(clonado);
-                            }});   
-                    </script>
+                        <div class="form-group radiobuttons">
+                                <input type="radio" name="genero" value="hombre" /> Hombre 
+                                <input type="radio" name="genero" value="mujer" /> Mujer 
+                                <input type="radio" name="genero" value="otro" /> Otro
+                        </div>
 
+                        <div class="clearfix"></div>
+
+                        <input type="submit" value="Enviar" class="btn-success-form"/>
+
+                    </form>
                 </section>
 
                 <!--Etiqueta usada para los sidebars-->
