@@ -7,9 +7,15 @@ var ArticleController = require('../controllers/article');
 
 var router = express.Router();
 
-//Podemos crear rutas
+//Podemos crear rutas. Rutas de prueba
 router.post('/datos-curso', ArticleController.datoscurso);
 router.get('/test-de-controlador', ArticleController.test);
+
+//Rutas para articulos. Rutas útiles
+router.post('/save', ArticleController.save);
+
+//Ruta para sacar todos los articulos de la BD
+router.get('/articles/:last?', ArticleController.getArticles);
 
 //ya podemos usar las rutas en cualquier parte
 module.exports = router;
