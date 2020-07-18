@@ -17,5 +17,8 @@ router.post('/save', ArticleController.save);
 //Ruta para sacar todos los articulos de la BD
 router.get('/articles/:last?', ArticleController.getArticles);
 
+//Ruta para conseguir un sólo articulo
+router.get('/article/:id', ArticleController.getArticle);
+
 //ya podemos usar las rutas en cualquier parte
 module.exports = router;

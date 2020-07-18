@@ -94,7 +94,7 @@ var controller = {
 
         //Hacemos un find para sacar los articulos de la BD
         //Manera descendente de ordenacion con el menos
-        query.sort('-id').exec((err,articles) => {
+        query.sort('-_id').exec((err,articles) => {
             if (err) {
                 return res.status(500).send({
                     status: 'error',
@@ -114,13 +114,37 @@ var controller = {
                 articles
             });
         }); //podemos poner condiciones: fecha, titulo, id ...
+    },
 
+    //Metodo para obtener un articulo en concreto
+    getArticle: (req, res) => {
 
+        //1: Recoger id de la url
+        var articleId = req.params.id;
+        //2: Comprobar que exista 
+        if (!articleId || articleId == null){
+            return res.status(404).send({
+                status: 'error',
+                message: 'No existe el articulo!'
+            });
+        }
+        //3: Buscar el articulo y devolverlo en JSON
+        Article.findById(articleId, (err,article)=> {
 
+            //Si no existe el articulo o da error
+            if (err || !article){
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No existe el articulo!'
+                });
+            }
 
-        
-
-
+            //Devolver el articulo
+            return res.status(200).send({
+                status: 'success',
+                article
+            });
+        });
     }
 
 
