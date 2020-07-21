@@ -1,0 +1,33 @@
+------------------------------TEORIA ANGULAR---------------------------------------
+
+COMPONENTE: Trozo de pantalla o de la vista. Todo lo que se ve en pantalla es 
+controlado y gestionado por este tipo de elementos. 
+
+La lógica de un componente dentro de una clase de Angular es que da soporte a una
+vista interactuando con ella a través de una API con sus propiedades y métodos. 
+
+El componente media entre la vista (a través de la plantilla) y la lógica de la 
+app (se incluye un modelo de datos), siendo una especie de controlador. 
+
+-----------------------------------------------------------------------------------
+
+PLANTILLA: Vistas de los componentes. HTML con sintaxis especial de Angular, 
+trabajando con databinding y directivas. 
+
+-----------------------------------------------------------------------------------
+
+DECORADORES Y METADATOS: Con los decoradores se configuran dinámicamente atributos/
+metadatos de las clases y componentes. Los metadatos  describen las clases y las 
+relaciones entre elementos (componente y plantilla).
+
+-----------------------------------------------------------------------------------
+
+SERVICIOS: Clases con un objetivo, un elemento que facilita la reutilización. Se 
+pueden usar en otros componentes mediante inyección de dependencias. 
+
+PROVIDERS: Servicios que proven de datos/funcionalidades mediante sus métodos. 
+
+-----------------------------------------------------------------------------------
+
+HOOKS: Eventos que se van a ejecutar en función del ciclo de vida de un componente, 
+o su estado (Cuando lo iniciamos, lo destruimos ...)

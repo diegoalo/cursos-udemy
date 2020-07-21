@@ -1,0 +1,20 @@
+<!--Vista del componente mi-componente-->
+
+<h1>{{titulo}}</h1>
+<p>{{comentario}}</p>
+<h2>{{year}}</h2>
+
+<p>
+    Hola soy un párrafo en la vista
+</p>
+
+<!--Si es true, mostrará el componente de peliculas en este div-->
+<!--Si las queremos ocultar usamos la función creada en el botón-->
+<button (click)="ocultarPeliculas()">Ocultar peliculas</button>
+<div *ngIf="mostrarPeliculas">
+    <app-peliculas></app-peliculas>
+</div>
+
+<app-pruebas></app-pruebas>
+
+<hr/>
