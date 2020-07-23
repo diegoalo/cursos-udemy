@@ -3,13 +3,10 @@
 
 <div class="center">
     <section id="content">
-
-
-        <!---Pruebas con componentes-->
-        <mi-componente></mi-componente>
-        <!---Pruebas con componentes creados con ng g -->
-
-
+        <!--Directiva especial para incorporar las rutas a la aplicación-->
+        <!--Si router-outlet detecta que tenemos la ruta 'blog' cargada, cargará el componente
+        asociado a esa ruta, cargando la instancia de este componente dentro de la etiqueta -->
+        <router-outlet></router-outlet>
     </section>
     <!--Añadimos el componente del sidebar-->
     <app-sidebar></app-sidebar>

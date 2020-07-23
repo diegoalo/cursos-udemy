@@ -12,22 +12,23 @@
         <nav id="menu">
             <ul>
                 <li>
-                    <a href="./index.html">Inicio</a>
+                    <!--Rutas dinámicas. Usamos routerLink-->
+                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">Inicio</a>
                 </li>
 
                 <li>
-                    <a href="./blog.html">Blog</a>
+                    <a [routerLink]="['/blog']" [routerLinkActive]="['active']">Blog</a>
                 </li>
 
                 <li>
-                    <a href="./formulario.html">Formulario</a>
+                    <a [routerLink]="['/formulario']" [routerLinkActive]="['active']">Formulario</a>
                 </li>
 
                 <li>
-                    <a href="./article.html">Pagina 1</a>
+                    <a [routerLink]="['/peliculas']" [routerLinkActive]="['active']">Peliculas</a>
                 </li>
                 <li>
-                    <a href="./article.html">Pagina 2</a>
+                    <a [routerLink]="['/pagina-de-pruebas']" [routerLinkActive]="['active']">Pruebas</a>
                 </li>
             </ul>
         </nav>

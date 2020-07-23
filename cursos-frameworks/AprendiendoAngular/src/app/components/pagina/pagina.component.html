@@ -1,0 +1,15 @@
+<h1 class="subheader">Página de pruebas</h1>
+
+<div *ngIf="nombre && apellidos">
+    <h2>El nombre es: {{nombre}}</h2>
+    <h2>El apellido es: {{apellidos}}</h2>
+</div>
+
+<div *ngIf="!nombre || !apellidos">
+    <h2>No hay parámetros por la URL</h2>
+</div>
+
+<button (click)="redireccion()">Ponme nombre y apellidos</button>
+
+
+
