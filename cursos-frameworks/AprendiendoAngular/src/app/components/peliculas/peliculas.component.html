@@ -2,3 +2,57 @@
 
 <h2>{{titulo}}</h2>
 <button (click)="cambiarTitulo()">Púlsame</button>
+
+<hr />
+
+<h2>Mostrar primera película</h2>
+{{peliculas[0].title}}
+
+<hr />
+
+<!---Directiva: Atributo que se le pone a un HTML para añadirle funcionalidad adicional-->
+<div *ngIf="peliculas.length <= 3">
+    Hay pocas películas:
+</div>
+
+<div *ngIf="peliculas.length > 3">
+    Hay muchas películas:
+</div>
+
+{{peliculas.length}}
+
+<hr />
+
+<!--Mostrar las películas-->
+<!--Directiva de mostrar peliculas *ngIf, si existe peliculas se muestra-->
+<h2 class="subheader">Listado de películas</h2>
+
+<div id="articles" *ngIf="peliculas">
+    <!--últimos articulos: listado-->
+    <!--ngFor: Directiva estructural para recorrer un array-->
+    <!--Por cada iteracion al array de peliculas creame un elemento pelicula-->
+    <article class="article-item" *ngFor="let pelicula of peliculas; let i = index;">
+        <div class="image-wrap">
+            <img src="{{pelicula.image}}" alt="{{pelicula.title}}" title="Poster" />
+
+        </div>
+
+        <h2>{{pelicula.title}}</h2>
+        <span class="date">
+            Hace 5 minutos
+        </span>
+
+        <!--Directiva de estilo [style]: Cambiamos el estilo del atributo dependiendo de su valor-->
+        <span class="year" [ngClass]= "{
+                            'year-green': pelicula.year > 1990,
+                            'year-red': pelicula.year <= 1990
+                        }"
+                        >
+            {{pelicula.year}}
+        </span>
+
+        <a href="#">Leer más</a>
+
+        <div id="clearfix"></div>
+    </article>
+</div>

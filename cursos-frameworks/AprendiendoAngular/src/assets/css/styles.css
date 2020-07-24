@@ -107,6 +107,26 @@ body {
     color: #970a0a !important;
 }
 
+.year-green {
+    display: block;
+    background: #f7c2c2;
+    color: #444;
+    border-radius: 4px;
+    padding: 5px;
+    width: 84px;
+    text-align: center;
+}
+
+.year-red {
+    display: block;
+    padding: 5px;
+    background: #f7e0c2;
+    color: #970a0a;
+    border-radius: 4px;
+    width: 84px;
+    text-align: center;
+}
+
 #slider {
     width: 100%;
     /*Degradado CSS*/
