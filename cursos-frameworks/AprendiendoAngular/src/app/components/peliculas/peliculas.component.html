@@ -1,58 +1,58 @@
-<h1 class="subheader">Películas</h1>
+<!---con la propriedad de input-->
+<app-slider [nombre]="'Peliculas'"
+[size] = "'small'">
 
-<h2>{{titulo}}</h2>
-<button (click)="cambiarTitulo()">Púlsame</button>
+</app-slider>
 
-<hr />
+<div class="center">
+    <section id="content">
 
-<h2>Mostrar primera película</h2>
-{{peliculas[0].title}}
+        <h1 class="subheader">Películas</h1>
 
-<hr />
+        <!-----
+        <h2>{{titulo}}</h2>
+        <button (click)="cambiarTitulo()">Púlsame</button>
 
-<!---Directiva: Atributo que se le pone a un HTML para añadirle funcionalidad adicional-->
-<div *ngIf="peliculas.length <= 3">
-    Hay pocas películas:
-</div>
+        <hr />
 
-<div *ngIf="peliculas.length > 3">
-    Hay muchas películas:
-</div>
+        <h2>Mostrar primera película</h2>
+        {{peliculas[0].title}}
 
-{{peliculas.length}}
+        <hr />
 
-<hr />
-
-<!--Mostrar las películas-->
-<!--Directiva de mostrar peliculas *ngIf, si existe peliculas se muestra-->
-<h2 class="subheader">Listado de películas</h2>
-
-<div id="articles" *ngIf="peliculas">
-    <!--últimos articulos: listado-->
-    <!--ngFor: Directiva estructural para recorrer un array-->
-    <!--Por cada iteracion al array de peliculas creame un elemento pelicula-->
-    <article class="article-item" *ngFor="let pelicula of peliculas; let i = index;">
-        <div class="image-wrap">
-            <img src="{{pelicula.image}}" alt="{{pelicula.title}}" title="Poster" />
-
+        Directiva: Atributo que se le pone a un HTML para añadirle funcionalidad adicional
+        <div *ngIf="peliculas.length <= 3">
+            Hay pocas películas:
         </div>
 
-        <h2>{{pelicula.title}}</h2>
-        <span class="date">
-            Hace 5 minutos
-        </span>
+        <div *ngIf="peliculas.length > 3">
+            Hay muchas películas:
+        </div>
 
-        <!--Directiva de estilo [style]: Cambiamos el estilo del atributo dependiendo de su valor-->
-        <span class="year" [ngClass]= "{
-                            'year-green': pelicula.year > 1990,
-                            'year-red': pelicula.year <= 1990
-                        }"
-                        >
-            {{pelicula.year}}
-        </span>
+        {{peliculas.length}}
 
-        <a href="#">Leer más</a>
+        <hr />-->
 
-        <div id="clearfix"></div>
-    </article>
+        <!--Mostrar las películas-->
+        <!--Directiva de mostrar peliculas *ngIf, si existe peliculas se muestra--
+
+
+        <h2 class="subheader">Listado de películas</h2>-->
+
+        <div id="articles" *ngIf="peliculas">
+            <!--últimos articulos: listado-->
+            <!--ngFor: Directiva estructural para recorrer un array-->
+            <!--Por cada iteracion al array de peliculas creame un elemento pelicula-->
+            <!--Llamamos al componente de película-->
+            <div *ngFor="let pelicula of peliculas; let i = index;">
+                <app-pelicula
+                    [pelicula] = "pelicula"
+                ></app-pelicula>
+            </div>
+            
+        </div>
+
+    </section>
+    <!--Añadimos el componente del sidebar-->
+    <app-sidebar></app-sidebar>
 </div>

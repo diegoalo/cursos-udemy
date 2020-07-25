@@ -1,4 +1,8 @@
-<div id="slider" class="slider-big">
-    <h1>Bienvenido al Master en Frameworks para JS</h1>
-    <a href="#" class="btn-white">Blog</a>
+<!--Objeto small o big dependiendo de input-->
+<div id="slider" [ngClass]="{
+    'slider-big': !size || size == 'big',
+    'slider-small': size == 'small'
+}">
+    <h1>{{nombre}}</h1>
+    <a [routerLink]="['/blog']" class="btn-white" *ngIf = "!size || size ==  'big'">Blog</a>
 </div>

@@ -1,15 +1,12 @@
-<app-header></app-header>
-<app-slider></app-slider>
+<!--App: Dejamos lo básico-->
 
-<div class="center">
-    <section id="content">
+<app-header></app-header>
+<!---Pasamos unos datos del componente padre (la app) al componente hijo (los sliders)
+
         <!--Directiva especial para incorporar las rutas a la aplicación-->
         <!--Si router-outlet detecta que tenemos la ruta 'blog' cargada, cargará el componente
         asociado a esa ruta, cargando la instancia de este componente dentro de la etiqueta -->
+        <!---En el router tenemos el contenido central cargado desde sus componentes-->
         <router-outlet></router-outlet>
-    </section>
-    <!--Añadimos el componente del sidebar-->
-    <app-sidebar></app-sidebar>
-</div>
 
 <app-footer></app-footer>
