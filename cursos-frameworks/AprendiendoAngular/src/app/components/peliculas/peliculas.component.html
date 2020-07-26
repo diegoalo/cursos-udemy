@@ -7,6 +7,22 @@
 <div class="center">
     <section id="content">
 
+        <div id = "favorita" *ngIf="favorita">
+            <h2 class="subheader">
+                Pelicula favorita
+            </h2>
+            <h4>
+                <!--USO DE PIPES: Funciones que aplican pequeñas acciones-->
+                {{favorita.title | uppercase }}
+            </h4>
+            <h4>
+                {{favorita.year | espar}}
+            </h4>
+            <h5>
+                {{this.fecha | date: 'short'}}
+            </h5>
+        </div>
+
         <h1 class="subheader">Películas</h1>
 
         <!-----
@@ -44,9 +60,11 @@
             <!--ngFor: Directiva estructural para recorrer un array-->
             <!--Por cada iteracion al array de peliculas creame un elemento pelicula-->
             <!--Llamamos al componente de película-->
+
             <div *ngFor="let pelicula of peliculas; let i = index;">
                 <app-pelicula
                     [pelicula] = "pelicula"
+                    (MarcarFavorita)="mostrarFavorita($event)"
                 ></app-pelicula>
             </div>
             

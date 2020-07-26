@@ -12,6 +12,8 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
   //definimos una propiedad publica que va a ser peliculas
   //array de objetos
   public peliculas: Pelicula[];
+  public favorita: Pelicula;
+  public fecha: any;
 
   constructor() {
     //Se le da valor a ciertas prioridades de la clase, pero no debe tener lógica dentro
@@ -30,6 +32,7 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
       {year: 1990, title: "La Historia Interminable II", image: 'https://i.pinimg.com/originals/55/77/20/557720ae3b701c6eff6b8b7a22bd18ca.jpg'}*/
 
     ];
+    this.fecha = new Date(2020, 8, 12);
   }
 
   ngOnInit(): void {
@@ -52,6 +55,10 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
   //Avisa antes de que se destruya un componente
   ngOnDestroy(){
     console.log("El componente se va a eliminar de la ejecución")
+  }
+
+  mostrarFavorita(event){
+    this.favorita = event.pelicula;
   }
 
 }
