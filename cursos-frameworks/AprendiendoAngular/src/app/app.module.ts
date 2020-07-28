@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {routing, appRoutingProviders} from './app.routing';
 //INDISPENSABLE PARA QUE FUNCIONEN LOS FORMULARIOS
 import {FormsModule } from '@angular/forms'
+//servicios
+import { HttpClientModule, HttpClient} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 //importamos componente creado
@@ -43,7 +45,10 @@ import {EsParPipe} from './pipes/espar.pipe'
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    //formularios
+    FormsModule,
+    //servicios
+    HttpClientModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

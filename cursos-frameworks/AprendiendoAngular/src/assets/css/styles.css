@@ -338,6 +338,7 @@ textarea:focus{
     padding-top: 30px;
     height: 120px;
     text-align: left;
+    margin-top: 30px;
 }
 
 .article-item .image-wrap {
