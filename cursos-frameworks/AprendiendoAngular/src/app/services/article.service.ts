@@ -26,7 +26,16 @@ export class ArticleService {
     }
 
     //obtener todos los articulos
-    getArticles(): Observable<any>{
+    //parametro opcional para obtener los ultimos articulos
+    getArticles(last:any = null): Observable<any>{
+        //comprobamos si nos viene el parametro last
+        //pasamos un parametro true para diferenciarlo
+        var articles = 'articles';
+
+        if (last != null){
+            var articles = 'articles/true';
+        }
+        
         return this._http.get(this.url+'/articles');
     }
 }
