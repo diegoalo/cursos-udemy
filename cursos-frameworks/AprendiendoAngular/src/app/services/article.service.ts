@@ -38,4 +38,10 @@ export class ArticleService {
         
         return this._http.get(this.url+'/articles');
     }
+
+    //metodo para sacar un articulo en concreto
+    getArticle(articleId): Observable<any>{
+        //peticion AJAX al backend
+        return this._http.get(this.url+''+'article/'+articleId);
+    }
 }

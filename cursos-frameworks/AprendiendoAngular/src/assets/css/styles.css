@@ -240,6 +240,8 @@ body {
     height: 20px;
     border: #970a0a 2px solid;
     transition: 300ms;
+    text-decoration: none !important;
+
 }
 
 .btn-success-form {
@@ -267,6 +269,7 @@ body {
     background: #970a0a;
     color: white;
 }
+
 
 #contacto.mid-form {
     width: 50%;
