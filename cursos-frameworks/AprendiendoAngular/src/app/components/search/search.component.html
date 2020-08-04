@@ -1,6 +1,6 @@
 <!---con la propriedad de input-->
 <app-slider 
-[nombre]="'Blog'"
+[nombre]="'Busqueda: ' + search"
 [size] = "'small'">
 
 </app-slider>
@@ -8,10 +8,11 @@
 <div class="center">
     <section id="content">
 
-        <h1 class="subheader">Blog</h1>
+        <h1 class="subheader">Articulos encontrados</h1>
 
         <!--Bucle para mostrar los articulos-->
         <!--Usamos el componente de articles-->
+
         <app-articles 
         [articles]="articles">
         </app-articles>

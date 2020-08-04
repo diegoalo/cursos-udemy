@@ -44,4 +44,11 @@ export class ArticleService {
         //peticion AJAX al backend
         return this._http.get(this.url+''+'article/'+articleId);
     }
+
+    //método search para el buscador
+    search(searchString): Observable<any>{
+        //peticion AJAX por metodo get para sacar datos del backend
+        //llamada del API + metodo search + string de busqueda
+        return this._http.get(this.url+'search/'+searchString);
+    }
 }

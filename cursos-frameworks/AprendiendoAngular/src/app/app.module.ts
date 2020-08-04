@@ -27,6 +27,8 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
 import {EsParPipe} from './pipes/espar.pipe';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { ArticleComponent } from './components/article/article.component';
+import { SearchComponent } from './components/search/search.component';
+import { ArticleNewComponent } from './components/article-new/article-new.component';
 
 
 
@@ -49,7 +51,9 @@ import { ArticleComponent } from './components/article/article.component';
     PeliculaComponent,
     EsParPipe,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    SearchComponent,
+    ArticleNewComponent
   ],
   imports: [
     BrowserModule,

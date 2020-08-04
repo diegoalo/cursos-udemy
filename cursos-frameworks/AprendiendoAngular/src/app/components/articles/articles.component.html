@@ -5,6 +5,11 @@
     <h3 class="subheader">Cargando ...</h3>
 </div>
 
+<!--si en search no se devuelven resultados-->
+<div class="loading" *ngIf = "articles && articles.length == 0">
+    <h3 class="subheader">No hay articulos para mostrar</h3>
+</div>
+
 <div id="articles"  *ngIf = "articles">
     <!--últimos articulos: listado-->
        <article class="article-item" id="article-template" *ngFor = "let article of articles">

@@ -1,13 +1,8 @@
-<!---con la propriedad de input-->
-<!--adaptar-->
-<app-slider [nombre]="'Formulario'" [size]="'small'">
-
-</app-slider>
 
 <div class="center">
     <section id="content">
 
-        <h1 class="subheader">Formularios</h1>
+        <h1 class="subheader">Crear articulo</h1>
 
 
         <form class="mid-form" #userForm="ngForm" id="contacto" (ngSubmit)="onSubmit()">
@@ -57,17 +52,6 @@
             <input type="submit" value="Enviar" class="btn-success-form" [disabled]="userForm.invalid" />
 
         </form>
-
-        <h2 class="subheader">Eventos</h2>
-
-        <!--Evento click: Clickeas en algo-->
-        <button (click)="hasDadoClick()">Dale click!!</button>
-        <!--Evento blur: Sales de un input-->
-        <!--keyUp: Cuando pulsas una tecla, te muestra el mensaje-->
-        <!--[()] TWO WAY DATA BINDING: Modifica una propiedad en la vista y en el modelo de datos/clase-->
-        <input type="text" [(ngModel)]="campo" (keyup.enter)="hasSalido()" />
-        {{campo}}
-
 
     </section>
     <!--Añadimos el componente del sidebar-->

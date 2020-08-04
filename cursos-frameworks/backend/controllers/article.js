@@ -320,7 +320,7 @@ var controller = {
                 });
             }
 
-            if(!articles || articles.length <= 0){
+            if (!articles || articles.length < 0){
                 return res.status(404).send({
                     status: 'error',
                     message: 'No hay articulos que coincidan con tu busqueda!!',
