@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
   public search: string;
 
   constructor(
-    //servicios que usaremos
+    //servicios que usaremos de routing
     private _route: ActivatedRoute,
     private _router: Router,
     private _articleService: ArticleService

@@ -1,3 +1,4 @@
+<!--Formulario de nuevo articulo-->
 
 <div class="center">
     <section id="content">
@@ -5,53 +6,36 @@
         <h1 class="subheader">Crear articulo</h1>
 
 
-        <form class="mid-form" #userForm="ngForm" id="contacto" (ngSubmit)="onSubmit()">
+        <form class="mid-form" #articleForm="ngForm" id="contacto" (ngSubmit)="onSubmit()">
             <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)] = "user.nombre" required 
-                pattern="[a-zA-Z]+"/>
+                <label for="title">Titulo</label>
+                <input type="text" name="title" #title="ngModel" [(ngModel)] = "article.title" required />
 
-                <small *ngIf="!nombre.valid && nombre.touched">
-                    El nombre no es válido
+                <small *ngIf="!title.valid && title.touched">
+                    El titulo no es válido
                 </small>
             </div>
 
             <div class="form-group">
-                <label for="apellidos">Apellidos</label>
-                <input type="text" name="nombre" #apellidos="ngModel" [(ngModel)] = "user.apellidos" required
-                pattern="[a-zA-Z]+"/>
+                <label for="content">Contenido</label>
+                <textarea name="content" #content="ngModel" [(ngModel)] = "article.content" required></textarea>
 
-                <small *ngIf="!apellidos.valid && apellidos.touched">
-                    Los apellidos no son válidos
+                <small *ngIf="!content.valid && content.touched">
+                    El articulo está vacío
                 </small>
-
             </div>
 
             <div class="form-group">
-                <label for="bio">Biografía</label>
-                <textarea name="bio" #bio="ngModel" [(ngModel)] = "user.bio" required></textarea>
-
-                <small *ngIf="!bio.valid && bio.touched">
-                    La biografía no es válida
-                </small>
-            </div>
-
-            <div class="form-group radiobuttons">
-                <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)] = "user.genero" required/> Hombre
-                <input type="radio" name="genero" value="mujer"  #genero="ngModel"[(ngModel)] = "user.genero"/> Mujer
-                <input type="radio" name="genero" value="otro"  #genero="ngModel" [(ngModel)] = "user.genero"/> Otro
-
-                <small *ngIf="!genero.valid && genero.touched">
-                    El genero no es válido
-                </small>
-
+                <label for="image">Imagen</label>
+                <input type="file" name="file0" />
             </div>
 
             <div class="clearfix"></div>
 
-            <input type="submit" value="Enviar" class="btn-success-form" [disabled]="userForm.invalid" />
+            <input type="submit" value="Enviar" class="btn-success-form" [disabled]="articleForm.invalid" />
 
         </form>
+
 
     </section>
     <!--Añadimos el componente del sidebar-->

@@ -51,4 +51,15 @@ export class ArticleService {
         //llamada del API + metodo search + string de busqueda
         return this._http.get(this.url+'search/'+searchString);
     }
+
+    //metodo para crear articulos desde el formulario
+    create(article): Observable <any>{
+        //variable params para convertir objeto literal de JS a un JSON string
+        let params = JSON.stringify(article);
+        //variable para configurar las cabeceras
+        //content type va a ser recibido por el backend en JSON y lo convierte a un objeto usable
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+        //peticion AJAX
+        return this._http.post(this.url+'save', params, {headers: headers})
+    }
 }
