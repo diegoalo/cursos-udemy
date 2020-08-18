@@ -39,7 +39,7 @@ router.put('/article/:id', ArticleController.update);
 router.delete('/article/:id', ArticleController.delete);
 
 //Ruta para subida de archivos
-router.post('/upload-image/:id', md_upload, ArticleController.upload);
+router.post('/upload-image/:id?', md_upload, ArticleController.upload);
 
 //Ruta para sacar una imagen
 router.get('/get-image/:image', ArticleController.getImage);

@@ -10,7 +10,7 @@ var path = require('path');
 const { exists } = require('../models/article');
 
 var controller = {
-    datoscurso: (req,res) => {
+    datoscurso: (req, res) => {
         //POSTMAN: peticiones HTTP, podemos recibir con el software varias peticiones e incluirlas
         var hola = req.body.hola;
         //console.log("Hola mundo");
@@ -23,14 +23,14 @@ var controller = {
         });
     },
 
-    test: (req,res) => {
+    test: (req, res) => {
         return res.status(200).send({
             message: 'Soy la acción test de mi controlador de articulos'
         });
     },
 
     //Método save: Nos permite crear un nuevo articulo
-    save: (req,res) => {
+    save: (req, res) => {
         //1: Recoger parámetros por post
         var params = req.body;
         //console.log(params);
@@ -40,8 +40,8 @@ var controller = {
             var validate_title = !validator.isEmpty(params.title);
             //true cuando no esté vacío el contenido
             var validate_content = !validator.isEmpty(params.content);
-             
-        }catch (err){
+
+        } catch (err) {
             return res.status(200).send({
                 status: 'error',
                 message: 'Faltan datos por enviar!'
@@ -54,11 +54,16 @@ var controller = {
             //4: Asignar valores al objeto
             article.title = params.title;
             article.content = params.content;
-            article.image = null;
+            if (params.image){
+                article.image = params.image;
+            }else {
+                article.image = null;
+            }
+            
             //5: Guardar el articulo
-            article.save((err, articleStored)=> {
+            article.save((err, articleStored) => {
                 //si se produce un error devolvemos el error y si no guardamos el articulo
-                if (err || !articleStored){
+                if (err || !articleStored) {
                     return res.status(200).send({
                         status: 'error',
                         message: 'El articulo no se ha guardado :('
@@ -77,11 +82,11 @@ var controller = {
                 message: 'Los datos no son válidos :('
             });
         }
-        
+
     },
 
     //Método para sacar todos los articulos
-    getArticles: (req,res) => {
+    getArticles: (req, res) => {
 
         //Consulta
         var query = Article.find({});
@@ -98,7 +103,7 @@ var controller = {
 
         //Hacemos un find para sacar los articulos de la BD
         //Manera descendente de ordenacion con el menos
-        query.sort('-_id').exec((err,articles) => {
+        query.sort('-_id').exec((err, articles) => {
             if (err) {
                 return res.status(500).send({
                     status: 'error',
@@ -126,17 +131,17 @@ var controller = {
         //1: Recoger id de la url
         var articleId = req.params.id;
         //2: Comprobar que exista 
-        if (!articleId || articleId == null){
+        if (!articleId || articleId == null) {
             return res.status(404).send({
                 status: 'error',
                 message: 'No existe el articulo!'
             });
         }
         //3: Buscar el articulo y devolverlo en JSON
-        Article.findById(articleId, (err,article)=> {
+        Article.findById(articleId, (err, article) => {
 
             //Si no existe el articulo o da error
-            if (err || !article){
+            if (err || !article) {
                 return res.status(404).send({
                     status: 'error',
                     message: 'No existe el articulo!'
@@ -152,7 +157,7 @@ var controller = {
     },
 
     //Método para actualizar los artículos
-    update: (req,res) => {
+    update: (req, res) => {
         //1: Recoger el id del articulo por la url
         var articleId = req.params.id;
         //2: Recoger los datos que llegan por el put
@@ -162,7 +167,7 @@ var controller = {
             var validate_title = !validator.isEmpty(params.title);
             var validate_content = !validator.isEmpty(params.content);
 
-        }catch(err){
+        } catch (err) {
             return res.status(200).send({
                 status: 'error',
                 message: 'No existe el articulo!'
@@ -170,21 +175,21 @@ var controller = {
         }
         if (validate_title && validate_content) {
             //4: Si son válidos, hacer la consulta, un find and update
-            Article.findOneAndUpdate({_id: articleId}, params, {new: true}, (err, articleUpdated) => {
-                if (err){
+            Article.findOneAndUpdate({ _id: articleId }, params, { new: true }, (err, articleUpdated) => {
+                if (err) {
                     return res.status(500).send({
                         status: 'error',
                         message: 'Error al actualizar !!!'
                     });
                 }
 
-                if (!articleUpdated){
+                if (!articleUpdated) {
                     return res.status(404).send({
                         status: 'error',
                         message: 'Faltan datos por enviar !!!'
                     });
                 }
-                
+
                 //Devolvemos un success
                 return res.status(200).send({
                     status: 'success',
@@ -192,7 +197,7 @@ var controller = {
                 });
             });
 
-        }else {
+        } else {
             //Devolver respuesta
             return res.status(200).send({
                 status: 'error',
@@ -201,19 +206,19 @@ var controller = {
         }
     },
 
-    delete: (req,res) => {
+    delete: (req, res) => {
         //1: Recoger el id de la URL
         var articleId = req.params.id;
         //2: Hacer un find and delete
-        Article.findOneAndDelete({_id: articleId}, (err, articleRemoved) => {
-            if (err){
+        Article.findOneAndDelete({ _id: articleId }, (err, articleRemoved) => {
+            if (err) {
                 return res.status(500).send({
                     status: 'error',
                     message: 'Error al borrar!!!'
                 });
             }
 
-            if (!articleRemoved){
+            if (!articleRemoved) {
                 return res.status(404).send({
                     status: 'error',
                     message: 'No se ha borrado el articulo, no existe!!!'
@@ -229,11 +234,11 @@ var controller = {
 
     },
 
-    upload: (req,res) => {
+    upload: (req, res) => {
         //1: Configurar el modulo connect-multiparty router/article.js (DONE)
         //2: Recoger el fichero de la peticion
         var file_name = 'Imagen no subida...';
-        if (!req.files){
+        if (!req.files) {
             return res.status(404).send({
                 status: 'error',
                 message: file_name
@@ -247,9 +252,9 @@ var controller = {
         //Extensión del archivo
         var extension_split = file_name.split('\.');
         var file_ext = extension_split[1];
-        
+
         //4: Comprobar la extensión (solo imagenes). Si no es valida, borrar el fichero
-        if (file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif'){
+        if (file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif') {
             //Borramos el archivo subido
             fs.unlink(file_path, (err) => {
                 return res.status(200).send({
@@ -258,38 +263,49 @@ var controller = {
                 });
             });
 
-        }else{
+        } else {
             //Sacamos id de la url
             var articleId = req.params.id;
-            //5: Si todo es valido, buscamos el articulo, asignamos el nombre de la imagen y actualizarlo
-            Article.findOneAndUpdate({_id: articleId }, {image: file_name}, {new:true}, (err,articleUpdated)=> {
-                //Si recibimos cualquier error
-                if(err || !articleUpdated){
+
+            //modulo de subida de imagenes
+            if (articleId) {
+                //5: Si todo es valido, buscamos el articulo, asignamos el nombre de la imagen y actualizarlo
+                Article.findOneAndUpdate({ _id: articleId }, { image: file_name }, { new: true }, (err, articleUpdated) => {
+                    //Si recibimos cualquier error
+                    if (err || !articleUpdated) {
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'Error al guardar la imagen del articulo!!'
+                        });
+                    }
+                    //Respuesta correcta
                     return res.status(200).send({
-                        status: 'error',
-                        message: 'Error al guardar la imagen del articulo!!'
+                        status: 'success',
+                        article: articleUpdated
                     });
-                }
+                });
+
+            } else {
+                //que solo suba la imagen al backend
                 //Respuesta correcta
                 return res.status(200).send({
                     status: 'success',
-                    article: articleUpdated
+                    image: file_name
                 });
-           
-            });
+            }
 
         }
 
     }, //end upload file
-    
+
     //metodo para obtener la imagen
-    getImage: (req,res) => {
+    getImage: (req, res) => {
         var file = req.params.image;
         var path_file = './upload/Articles/' + file;
 
         //Comprobar si el fichero existe
         fs.exists(path_file, (exists) => {
-            if (exists){
+            if (exists) {
                 return res.sendFile(path.resolve(path_file));
             } else {
                 return res.status(404).send({
@@ -301,41 +317,43 @@ var controller = {
     },
 
     //metodo para buscar un articulo
-    search: (req,res) => {
+    search: (req, res) => {
         //1: Sacar el string a buscar
         var searchString = req.params.search;
         //2: Find OR
-        Article.find({ "$or": [
-            //si el searchString esta incluido en titulo o content, sacamos los articulos que los contengan
-            {"title": {"$regex": searchString, "$options": "i"}},
-            {"content": {"$regex": searchString, "$options": "i"}}
-        ]})
-        .sort([['date','descending']])
-        .exec((err, articles) => {
+        Article.find({
+            "$or": [
+                //si el searchString esta incluido en titulo o content, sacamos los articulos que los contengan
+                { "title": { "$regex": searchString, "$options": "i" } },
+                { "content": { "$regex": searchString, "$options": "i" } }
+            ]
+        })
+            .sort([['date', 'descending']])
+            .exec((err, articles) => {
 
-            if(err){
-                return res.status(500).send({
-                    status: 'error',
-                    message: 'Error en la peticion!!',
+                if (err) {
+                    return res.status(500).send({
+                        status: 'error',
+                        message: 'Error en la peticion!!',
+                    });
+                }
+
+                if (!articles || articles.length < 0) {
+                    return res.status(404).send({
+                        status: 'error',
+                        message: 'No hay articulos que coincidan con tu busqueda!!',
+                    });
+                }
+
+                return res.status(200).send({
+                    status: 'success',
+                    articles
                 });
-            }
 
-            if (!articles || articles.length < 0){
-                return res.status(404).send({
-                    status: 'error',
-                    message: 'No hay articulos que coincidan con tu busqueda!!',
-                });
-            }
-
-            return res.status(200).send({
-                status: 'success',
-                articles
             });
 
-        });
-        
     }
 };
- //Fin del controlador
+//Fin del controlador
 
 module.exports = controller;

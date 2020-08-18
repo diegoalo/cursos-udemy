@@ -7,6 +7,8 @@ import {FormsModule } from '@angular/forms'
 import { HttpClientModule, HttpClient} from '@angular/common/http';
 //moment para formatear fechas
 import {MomentModule} from 'angular2-moment';
+//importamos modulo de subida de imagenes
+import { AngularFileUploaderModule, AngularFileUploaderComponent } from 'angular-file-uploader';
 
 
 import { AppComponent } from './app.component';
@@ -63,7 +65,8 @@ import { ArticleNewComponent } from './components/article-new/article-new.compon
     //servicios
     HttpClientModule,
     //moment module: todos los modulos se cargan en los imports
-    MomentModule
+    MomentModule,
+    AngularFileUploaderModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

@@ -26,8 +26,11 @@
             </div>
 
             <div class="form-group">
-                <label for="image">Imagen</label>
-                <input type="file" name="file0" />
+                <!--modulo de subida de imagenes-->
+                <angular-file-uploader
+                   [config]="afuConfig"
+                   (ApiResponse)="imageUpload($event)">
+                </angular-file-uploader>
             </div>
 
             <div class="clearfix"></div>

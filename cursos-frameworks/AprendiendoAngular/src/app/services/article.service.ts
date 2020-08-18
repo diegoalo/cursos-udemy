@@ -60,6 +60,6 @@ export class ArticleService {
         //content type va a ser recibido por el backend en JSON y lo convierte a un objeto usable
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         //peticion AJAX
-        return this._http.post(this.url+'save', params, {headers: headers})
+        return this._http.post(this.url+'save', params, {headers: headers});
     }
 }
