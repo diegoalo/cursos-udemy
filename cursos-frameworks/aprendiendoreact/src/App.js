@@ -7,21 +7,28 @@ import Header from './components/Header';
 import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
+import Peliculas from './components/Peliculas';
 
 
 function App() {
   //JSX mezcla HTML, Javascript y demas
   //Para cargar los componentes podemos incrustarlos como una mini etiqueta HTML
   //Podemos cargarlos cuantas veces queramos
+
+  var buttonString = "Blog";
+
   return (
     <div className="App">
       <Header />
 
-      <Slider />
+      <Slider 
+        title="Bienvenido al Master en Frameworks para JS"
+        btn={buttonString}
+      />
 
       <div className="center">
 
-        <SeccionPruebas />
+        <Peliculas />
 
         <Sidebar />
         <div className = "clearfix"></div>

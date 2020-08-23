@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 //componentes
 import MiComponente from './MiComponente';
-import Peliculas from './Peliculas';
 
 class SeccionPruebas extends Component {
 
@@ -59,7 +58,8 @@ class SeccionPruebas extends Component {
 
                     <MiComponente />
 
-                    <Peliculas />
+                    <MiComponente />
+
 
                 </section>
 
@@ -69,16 +69,18 @@ class SeccionPruebas extends Component {
                 </p>
 
                 <p>
-                    <input type="button" value="Sumar" onClick = {this.sumar.bind(this)}/>
-                    <input type="button" value="Restar" onClick = {this.restar.bind(this)}/>
+                    <input type="button" value="Sumar" onClick = {this.sumar}/>
+                    <input type="button" value="Restar" onClick = {this.restar}/>
                 </p>
 
             </section>
         );
     }
 
+    //Para no tener que pasar el .bind(this), definimos los metodos como funciones de flecha
+
     //metodo sumar
-    sumar(e){
+    sumar= (e) => {
         //this.contador = this.contador+1;
         //this.state.contador = this.state.contador + 1;
         this.setState({
@@ -87,7 +89,7 @@ class SeccionPruebas extends Component {
     }
 
     //metodo restar
-    restar(e){
+    restar = (e) => {
         //this.contador = this.contador-1;
         //this.state.contador = this.state.contador - 1;
         this.setState({
