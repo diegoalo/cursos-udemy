@@ -2,12 +2,13 @@ import React from 'react';
 import './assets/css/App.css';
 
 //Importar componentes
-import SeccionPruebas from './components/SeccionPruebas';
+//import SeccionPruebas from './components/SeccionPruebas';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import Peliculas from './components/Peliculas';
+//import Peliculas from './components/Peliculas';
+import Router from './Router';
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
 
       <div className="center">
 
-        <Peliculas />
+
+        <Router />
+        {/* <Peliculas /> */}
 
         <Sidebar />
         <div className = "clearfix"></div>

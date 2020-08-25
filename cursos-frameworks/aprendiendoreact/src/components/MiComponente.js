@@ -28,7 +28,7 @@ class MiComponente extends Component {
                             return (
                                 //tenemos que poner la key a los elementos
                                 //si queremos cambiar un elemento dinamicamente, React debe ser capaz de indentificarlo
-                                <li key = {i}>
+                                <li key={i}>
                                     {ingrediente}
                                 </li>
                             )
@@ -36,6 +36,13 @@ class MiComponente extends Component {
                     }
                 </ol>
                 <hr />
+                {this.props.saludo &&
+                    <React.Fragment>
+                        <h1>Desde una prop:</h1>
+                        <h3>{this.props.saludo}</h3>
+                    </React.Fragment>
+
+                }
             </div>
         );
     }
