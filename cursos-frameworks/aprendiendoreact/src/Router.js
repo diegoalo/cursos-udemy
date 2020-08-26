@@ -6,18 +6,28 @@ import SeccionPruebas from './components/SeccionPruebas';
 import MiComponente from './components/MiComponente';
 import Peliculas from './components/Peliculas';
 import Error from './components/Error';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Blog from './components/Blog';
 
 class Router extends Component {
 
     render() {
+
+        var buttonString = "Blog";
+
         return (
             <BrowserRouter>
                 {/*Configurar rutas y páginas*/}
-                <Switch>
-                    <Route exact path="/" component={Peliculas} />
-                    <Route path="/ruta-prueba" component={SeccionPruebas} />
-                    <Route path="/segunda-ruta" component={MiComponente} />
+                <Header />
 
+
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/home" component={Home} />
+                    <Route path="/blog" component={Blog} />
+                    <Route path="/segunda-ruta" component={MiComponente} />
                     <Route exact path="/pagina-1" render={() => (
                         <React.Fragment>
                             <h1>Hola mundo desde la primera página</h1>
@@ -26,8 +36,33 @@ class Router extends Component {
 
                     )} />
 
+                    <Route exact path="/pruebas/:nombre/:apellidos?" render={(props) => {
+                        var nombre = props.match.params.nombre;
+                        var apellidos = props.match.params.apellidos;
+
+                        return (
+                            <div id="content">
+                                <h1 className="subheader">Página de pruebas</h1>
+                                <h2>
+                                    {nombre && !apellidos &&
+                                        <span>{nombre}</span>
+                                    }
+
+                                    {
+                                        nombre && apellidos &&
+                                        <span>{nombre} {apellidos}</span>
+                                    }
+
+                                </h2>
+                            </div>
+                        );
+                    }} />
+
                     <Route component={Error} />
                 </Switch>
+                    <div className="clearfix"></div>
+                {/* Fin del div center */}
+                <Footer />
             </BrowserRouter>
         );
     }

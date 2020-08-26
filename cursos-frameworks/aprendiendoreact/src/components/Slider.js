@@ -7,9 +7,13 @@ class Slider extends Component {
         console.log(this.props);
 
         return (
-            <div id="slider" className="slider-big">
+            <div id="slider" className={this.props.size}>
                 <h1>{this.props.title}</h1>
-        <a href="#" className="btn-white">{this.props.btn}</a>
+                
+                {this.props.btn &&
+                    <a href="#" className="btn-white">{this.props.btn}</a>
+                }
+
             </div>
         );
     }

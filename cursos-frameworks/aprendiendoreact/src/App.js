@@ -16,28 +16,13 @@ function App() {
   //Para cargar los componentes podemos incrustarlos como una mini etiqueta HTML
   //Podemos cargarlos cuantas veces queramos
 
-  var buttonString = "Blog";
+
 
   return (
     <div className="App">
-      <Header />
 
-      <Slider 
-        title="Bienvenido al Master en Frameworks para JS"
-        btn={buttonString}
-      />
-
-      <div className="center">
-
-
-        <Router />
-        {/* <Peliculas /> */}
-
-        <Sidebar />
-        <div className = "clearfix"></div>
-
-      </div> {/* Fin del div center */}
-      <Footer />
+      <Router />
+      {/* <Peliculas /> */}
 
     </div>
 
