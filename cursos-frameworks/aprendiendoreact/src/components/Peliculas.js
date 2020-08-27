@@ -11,6 +11,9 @@ componentDidUpdate: (Docheck en Angular) cuando se actualiza un componente se ej
 
 import React, { Component } from 'react';
 import Pelicula from './Pelicula';
+import Slider from './Slider';
+import Sidebar from './Sidebar';
+
 
 class Peliculas extends Component {
 
@@ -76,27 +79,35 @@ class Peliculas extends Component {
         var favorita;
         if (this.state.favorita.titulo) {
             favorita = (
-            <p className="favorita">
-                <strong>La pelicula favorita de Diego es: </strong>
-                <span>{this.state.favorita.titulo}</span>
-            </p>);
-        }else {
+                <p className="favorita">
+                    <strong>La pelicula favorita de Diego es: </strong>
+                    <span>{this.state.favorita.titulo}</span>
+                </p>);
+        } else {
             favorita = (
-                <p>No hay pelicula favorita</p> 
+                <p>No hay pelicula favorita</p>
             );
         }
 
 
         return (
-            <div id="content" className="peliculas">
+            <React.Fragment>
+
+                <Slider
+                    title="Películas"
+                    size="slider-small"
+                />
+
+                <div className="center">
+                    <div id="content" className="peliculas">
 
 
-                <h2 className="subheader">Peliculas</h2>
-                <p>Selección de las peliculas favoritas de {this.state.nombre}</p>
+                        <h2 className="subheader">Lanzamientos</h2>
+                        <p>Selección de las peliculas favoritas de {this.state.nombre}</p>
 
-                <p><button onClick={this.cambiarTitulo}>Cambiar titulo de Nemo</button></p>
+                        <p><button onClick={this.cambiarTitulo}>Cambiar titulo de Nemo</button></p>
 
-                {/*
+                        {/*
                     //En JSX ponemos condicionales de la siguiente forma, asi podemos mostrar o no el elemento
                     //solo se muestra cuando esa condicion se cumpla
                     //?: condicion ternaria ? (codigo que queremos mostrar) : (codigo que se muestra si no)
@@ -109,28 +120,35 @@ class Peliculas extends Component {
                             <p>No hay pelicula favorita</p>
                         )*/
 
-                }
+                        }
 
-                {favorita}
+                        {favorita}
 
-                {/**Crear componente de pelicula */}
+                        {/**Crear componente de pelicula */}
 
-                <div id="article" className="peliculas">
-                    {   
-                    //Tambien se puede hacer un bucle de JS, aunque este metodo es el mas sencillo
-                        this.state.peliculas.map((pelicula, i) => {
-                            return (
-                                //Pasamos la key (es necesario) y el objeto pelicula (props)
-                                <Pelicula key={i}
-                                    pelicula={pelicula}
-                                    marcarFavorita={this.favorita}
-                                    indice={i}
-                                />
-                            )
-                        })
-                    }
+                        <div id="article" className="peliculas">
+                            {
+                                //Tambien se puede hacer un bucle de JS, aunque este metodo es el mas sencillo
+                                this.state.peliculas.map((pelicula, i) => {
+                                    return (
+                                        //Pasamos la key (es necesario) y el objeto pelicula (props)
+                                        <Pelicula key={i}
+                                            pelicula={pelicula}
+                                            marcarFavorita={this.favorita}
+                                            indice={i}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+
+                    <Sidebar
+                        blog="false"
+                    />
+
                 </div>
-            </div>
+            </React.Fragment>
 
         );
     }
