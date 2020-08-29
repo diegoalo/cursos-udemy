@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+//importamos variable global
+import Global from '../Global'
+//importamos libreria para formatear las fechas
+import Moment from 'react-moment';
+import 'moment/locale/es';
+//importamos link para los enlaces de los articulos individuales
+import {Link} from 'react-router-dom';
 
 class Articles extends Component {
+
+    url = Global.url;
 
     state = {
         articles: [],
@@ -11,11 +19,52 @@ class Articles extends Component {
 
     //cargamos el metodo para poner los articulos antes que nada
     componentWillMount() {
-        this.getArticles();
+        var home = this.props.home;
+        var search = this.props.search;
+
+        if(home === "true"){
+            this.getLastArticles();
+        }else if(search && search != null && search != undefined){
+            this.getArticlesBySearch(search);
+        }else {
+            this.getArticles();
+        }
+
+    }
+
+    //metodo de busqueda de articulos
+    getArticlesBySearch = (searched) => {
+        axios.get(this.url + "search/" + searched)
+            .then(res => {
+
+                if(res.data.articles){
+                    this.setState({
+                        articles: res.data.articles,
+                        status: 'success'
+                    });
+                }else{
+                    this.setState({
+                        articles: res.data.articles,
+                        status: 'failed'
+                    });
+                }
+            });
+    }
+
+    getLastArticles = () => {
+        axios.get(this.url + "/articles/last")
+            .then(res => {
+
+                this.setState({
+                    articles: res.data.articles,
+                    status: 'success'
+                });
+                console.log(this.state);
+            });
     }
 
     getArticles = () => {
-        axios.get("http://localhost:3900/api/articles")
+        axios.get(this.url + "/articles")
             .then(res => {
 
                 this.setState({
@@ -35,13 +84,20 @@ class Articles extends Component {
                 return (
                     <article className="article-item" id="article-template">
                         <div className="image-wrap">
-                            <img src="https://vertele.eldiario.es/2020/01/03/todo-series/Cuentame-Nochebuena-fallida-inesperado-Ines_2191890794_14220448_660x371.jpg" alt="Cuentame" title="Cuentame" />
+                            {articles.image !== null ? (
+                                <img src={this.url + "/get-image/"+articles.image} alt={articles.title} />
+                            ):(
+                                <img src="https://assets.afcdn.com/album/D20190312/phalbm25728892.jpg" alt = "Sin imagen" />
+                            )
+                            }
+                            
 
                         </div>
 
                         <h2>{articles.title}</h2>
-                        <span className="date">{articles.date}</span>
-                        <a href="#">Leer más</a>
+                        <span className="date">
+                            <Moment locale= "es" fromNow>{articles.date}</Moment></span>
+                        <Link to={'/blog/articulo/'+articles._id}>Leer más</Link>
 
                         <div id="clearfix"></div>
                     </article>

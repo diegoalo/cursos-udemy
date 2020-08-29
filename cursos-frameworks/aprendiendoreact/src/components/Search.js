@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import Articles from './Articles';
 //axios para la API REST (backend)
 
-class Blog extends Component {
+class Search extends Component {
 
     state = {
         articles: {},
@@ -12,6 +12,8 @@ class Blog extends Component {
     }
 
     render() {
+
+        var searched = this.props.match.params.search;
 
         /* axios.get("http://localhost:3900/api/articles")
             .then(res => {
@@ -25,7 +27,7 @@ class Blog extends Component {
         return (
             <div id="blog">
                 <Slider
-                    title="Blog de la página"
+                    title={'Busqueda: ' + searched}
                     size="slider-small"
                 />
 
@@ -34,7 +36,9 @@ class Blog extends Component {
                         {/* Listado de articulos que vendran del API */}
                         <h1 className="subheader">Listado de artículos</h1>
                         
-                        <Articles />
+                        <Articles 
+                            search = {searched}
+                        />
                         
                         {/* this.state.status === 'success' &&
                             <div>
@@ -55,4 +59,4 @@ class Blog extends Component {
     }
 }
 
-export default Blog;
+export default Search;
