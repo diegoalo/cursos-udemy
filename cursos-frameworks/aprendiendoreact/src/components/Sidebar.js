@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Sidebar extends Component {
 
+    searchRef = React.createRef();
+
+    state = {
+        search: "",
+        redirect: false
+    };
+
+
+    redirectToSearch = (e) => {
+        e.preventDefault();
+        //damos un valor al state
+
+        this.setState({
+            search: this.searchRef.current.value,
+            redirect: true
+        });
+    }
+
     render() {
+
+        if (this.state.redirect){
+            return(
+                <Redirect to={'/redirect/'+this.state.search} />
+            );
+        }
 
         return (
             <aside id="sidebar">
@@ -16,8 +41,8 @@ class Sidebar extends Component {
                 <div id="search" className="sidebar-item">
                     <h3>Buscador</h3>
                     <p>Encuentra el artículo que buscas</p>
-                    <form>
-                        <input type="text" name="search" />
+                    <form onSubmit = {this.redirectToSearch}>
+                        <input type="text" name="search" ref={this.searchRef} />
                         <input type="submit" value="Buscar" className="btn" />
                     </form>
                 </div>

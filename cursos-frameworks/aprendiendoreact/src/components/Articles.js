@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 
 class Articles extends Component {
 
+    
     url = Global.url;
 
     state = {
@@ -34,21 +35,26 @@ class Articles extends Component {
 
     //metodo de busqueda de articulos
     getArticlesBySearch = (searched) => {
+        console.log(this.url);
         axios.get(this.url + "search/" + searched)
             .then(res => {
-
-                if(res.data.articles){
                     this.setState({
                         articles: res.data.articles,
                         status: 'success'
                     });
-                }else{
-                    this.setState({
-                        articles: res.data.articles,
-                        status: 'failed'
-                    });
-                }
+                
+                console.log(this.state);
+
+
+
+            })
+            .catch(err => {
+                this.setState({
+                    articles: [],
+                    status: 'error'
+                });
             });
+
     }
 
     getLastArticles = () => {
@@ -85,7 +91,7 @@ class Articles extends Component {
                     <article className="article-item" id="article-template">
                         <div className="image-wrap">
                             {articles.image !== null ? (
-                                <img src={this.url + "/get-image/"+articles.image} alt={articles.title} />
+                                <img src={"localhost:3000/get-image/"+articles.image} alt={articles.title} />
                             ):(
                                 <img src="https://assets.afcdn.com/album/D20190312/phalbm25728892.jpg" alt = "Sin imagen" />
                             )

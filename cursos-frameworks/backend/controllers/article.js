@@ -7,7 +7,8 @@ var Article = require('../models/article');
 //importar modulo file system
 var fs = require('fs');
 var path = require('path');
-const { exists } = require('../models/article');
+
+//const { exists } = require('../models/article');
 
 var controller = {
     datoscurso: (req, res) => {
@@ -54,6 +55,7 @@ var controller = {
             //4: Asignar valores al objeto
             article.title = params.title;
             article.content = params.content;
+
             if (params.image){
                 article.image = params.image;
             }else {
@@ -64,12 +66,12 @@ var controller = {
             article.save((err, articleStored) => {
                 //si se produce un error devolvemos el error y si no guardamos el articulo
                 if (err || !articleStored) {
-                    return res.status(200).send({
+                    return res.status(404).send({
                         status: 'error',
                         message: 'El articulo no se ha guardado :('
                     });
                 }
-                return res.status(404).send({
+                return res.status(200).send({
                     status: 'success',
                     article: articleStored
                 });
@@ -93,7 +95,8 @@ var controller = {
 
         //recogemos el last adjunto a la url 
         var last = req.params.last;
-        console.log(last);
+        
+        //console.log(last);
 
         if (last || last != undefined) {
             //si llega ese last, ponemos un limite de resultados de la query a 5
@@ -104,6 +107,7 @@ var controller = {
         //Hacemos un find para sacar los articulos de la BD
         //Manera descendente de ordenacion con el menos
         query.sort('-_id').exec((err, articles) => {
+            
             if (err) {
                 return res.status(500).send({
                     status: 'error',
@@ -130,6 +134,7 @@ var controller = {
 
         //1: Recoger id de la url
         var articleId = req.params.id;
+        
         //2: Comprobar que exista 
         if (!articleId || articleId == null) {
             return res.status(404).send({
@@ -137,6 +142,7 @@ var controller = {
                 message: 'No existe el articulo!'
             });
         }
+
         //3: Buscar el articulo y devolverlo en JSON
         Article.findById(articleId, (err, article) => {
 
@@ -158,10 +164,13 @@ var controller = {
 
     //Método para actualizar los artículos
     update: (req, res) => {
+
         //1: Recoger el id del articulo por la url
         var articleId = req.params.id;
+
         //2: Recoger los datos que llegan por el put
         var params = req.body;
+
         //3: Validar los datos
         try {
             var validate_title = !validator.isEmpty(params.title);
@@ -207,8 +216,10 @@ var controller = {
     },
 
     delete: (req, res) => {
+
         //1: Recoger el id de la URL
         var articleId = req.params.id;
+
         //2: Hacer un find and delete
         Article.findOneAndDelete({ _id: articleId }, (err, articleRemoved) => {
             if (err) {
@@ -236,8 +247,10 @@ var controller = {
 
     upload: (req, res) => {
         //1: Configurar el modulo connect-multiparty router/article.js (DONE)
+
         //2: Recoger el fichero de la peticion
         var file_name = 'Imagen no subida...';
+
         if (!req.files) {
             return res.status(404).send({
                 status: 'error',
@@ -247,14 +260,17 @@ var controller = {
         //3: Conseguir el nombre y la extensión del archivo
         var file_path = req.files.file0.path;
         var file_split = file_path.split('/');
+
         //Nombre del archivo
         var file_name = file_split[2];
+
         //Extensión del archivo
         var extension_split = file_name.split('\.');
         var file_ext = extension_split[1];
 
         //4: Comprobar la extensión (solo imagenes). Si no es valida, borrar el fichero
         if (file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif') {
+
             //Borramos el archivo subido
             fs.unlink(file_path, (err) => {
                 return res.status(200).send({
@@ -264,6 +280,7 @@ var controller = {
             });
 
         } else {
+
             //Sacamos id de la url
             var articleId = req.params.id;
 
@@ -271,6 +288,7 @@ var controller = {
             if (articleId) {
                 //5: Si todo es valido, buscamos el articulo, asignamos el nombre de la imagen y actualizarlo
                 Article.findOneAndUpdate({ _id: articleId }, { image: file_name }, { new: true }, (err, articleUpdated) => {
+                    
                     //Si recibimos cualquier error
                     if (err || !articleUpdated) {
                         return res.status(200).send({
