@@ -208,6 +208,31 @@ body {
 
 }
 
+.btn-warning {
+  display: block !important;
+  background: #269cbd;
+  color: white !important;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  max-width: 54px;
+  transition: 300ms all;
+  border:none;
+  cursor:pointer;
+  float: left;
+  margin-right: 20px;
+}
+
+.btn-warning:hover {
+  background: white;
+  color: #269cbd !important;
+  border-radius: 10px;
+  border: 3px solid #269cbd !important; 
+}
+
+
 .btn-success {
   background: white;
   color: #269cbd;
@@ -215,9 +240,10 @@ body {
   font-size: 15px;
   border-radius: 10px;
   max-width: 101px;
-  height: 20px;
+  height: 36px;
   border: #269cbd 2px solid;
   transition: 300ms;
+  margin-bottom: 20px;
 }
 
 .btn-success-form {
@@ -261,7 +287,9 @@ body {
 }
 
 
-input[type='text'], textarea{
+input[type='text'], textarea,
+input[type='file']
+{
   width: 100%;
   min-height: 30px;
   border: 1px solid #eee;
@@ -269,6 +297,10 @@ input[type='text'], textarea{
   padding: 3px;
   border-radius: 10px;
   transition: 300ms all;
+}
+
+input[type="submit"]{
+  margin-top: 10px;
 }
 
 input[type='text']:focus{

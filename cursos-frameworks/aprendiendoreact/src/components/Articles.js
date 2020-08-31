@@ -35,17 +35,12 @@ class Articles extends Component {
 
     //metodo de busqueda de articulos
     getArticlesBySearch = (searched) => {
-        console.log(this.url);
         axios.get(this.url + "search/" + searched)
             .then(res => {
                     this.setState({
                         articles: res.data.articles,
                         status: 'success'
                     });
-                
-                console.log(this.state);
-
-
 
             })
             .catch(err => {
@@ -93,11 +88,9 @@ class Articles extends Component {
                             {articles.image !== null ? (
                                 <img src={"localhost:3000/get-image/"+articles.image} alt={articles.title} />
                             ):(
-                                <img src="https://assets.afcdn.com/album/D20190312/phalbm25728892.jpg" alt = "Sin imagen" />
+                                <img src="https://media.vogue.co.uk/photos/5f32a2b5aa24dc1768af812d/master/w_1808,c_limit/Mulan%20Gon%20li.jpg" alt = "Sin imagen" />
                             )
                             }
-                            
-
                         </div>
 
                         <h2>{articles.title}</h2>
