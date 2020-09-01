@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Pelicula extends Component {
 
@@ -13,7 +14,7 @@ class Pelicula extends Component {
         //recogemos las props del objeto obtenido en Peliculas
         const { titulo, image } = this.props.pelicula;
         //le pasamos la pelicula a la funcion de marcarFavorita (pasar datos de hijo a padre)
-        const pelicula = this.props.pelicula;
+        //const pelicula = this.props.pelicula;
 
         return (
             <article className="article-item" id="article-template">
@@ -24,7 +25,7 @@ class Pelicula extends Component {
 
                 <h2>{titulo}</h2>
                 <span className="date">Hace 5 minutos</span>
-                <a href="#">Leer más</a>
+                <Link to="/blog">Leer más</Link>
 
                 <button onClick={this.marcar}>Marcar como favorita </button>
 

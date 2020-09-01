@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom';
 import Global from '../Global';
 import Sidebar from './Sidebar';
 //moment para formatear la fecha
 import Moment from 'react-moment';
 import 'moment/locale/es';
+import { Link } from 'react-router-dom';
 
 class Article extends Component {
 
@@ -74,8 +74,8 @@ class Article extends Component {
                                 {article.content}
                             </p>
 
-                            <a href="#" className="btn-warning">Eliminar</a>
-                            <a href="#" className="btn-warning">Editar</a>
+                            <Link to="/blog" className="btn-warning">Eliminar</Link>
+                            <Link to="/blog" className="btn-warning">Editar</Link>
 
                             <div id="clearfix"></div>
                         </article>
@@ -83,7 +83,7 @@ class Article extends Component {
 
 
                     { /** En caso de que no haya articulo */
-                        !this.state.article && this.state.status == "success" &&
+                        !this.state.article && this.state.status === "success" &&
                         <div id="article">
                             <h2 className="subheader">El artículo no existe</h2>
                             <p>Inténtalo de nuevo más tarde</p>
@@ -92,7 +92,7 @@ class Article extends Component {
                     }
 
                     { /** En caso de que no se haya cargado el articulo */
-                        this.state.status == null &&
+                        this.state.status === null &&
                         <div id="article">
                             <h2 className="subheader">Cargando</h2>
                             <p>¡No te vayas!</p>

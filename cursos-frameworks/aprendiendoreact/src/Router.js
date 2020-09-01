@@ -18,7 +18,7 @@ class Router extends Component {
 
     render() {
 
-        var buttonString = "Blog";
+        //var buttonString = "Blog";
 
         return (
             <BrowserRouter>

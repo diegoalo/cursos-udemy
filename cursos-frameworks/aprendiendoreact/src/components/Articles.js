@@ -25,7 +25,7 @@ class Articles extends Component {
 
         if(home === "true"){
             this.getLastArticles();
-        }else if(search && search != null && search != undefined){
+        }else if(search && search !== null && search !== undefined){
             this.getArticlesBySearch(search);
         }else {
             this.getArticles();
@@ -83,7 +83,7 @@ class Articles extends Component {
             //mostrar todos los articulos del blog
             var listArticles = this.state.articles.map((articles) => {
                 return (
-                    <article className="article-item" id="article-template">
+                    <article key={articles._id} className="article-item" id="article-template">
                         <div className="image-wrap">
                             {articles.image !== null ? (
                                 <img src={"localhost:3000/get-image/"+articles.image} alt={articles.title} />
@@ -110,7 +110,7 @@ class Articles extends Component {
                     {listArticles}
                 </div>
             );
-        } else if (this.state.articles.length == 0 && this.state.status === 'success') {
+        } else if (this.state.articles.length === 0 && this.state.status === 'success') {
             return (
                 <div id="articles">
                     <h2 className="subheader">No hay artículos</h2>
