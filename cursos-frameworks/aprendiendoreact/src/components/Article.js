@@ -5,7 +5,8 @@ import Sidebar from './Sidebar';
 //moment para formatear la fecha
 import Moment from 'react-moment';
 import 'moment/locale/es';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Article extends Component {
 
@@ -42,7 +43,53 @@ class Article extends Component {
             });
     }
 
+    //metodo para eliminar articulos
+    deleteArticle = (id) => {
+
+        swal({
+            title: "¿Confirmar acción?",
+            text: "Una vez borrado, el artículo no puede recuperarse",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete(this.url + 'article/' + id)
+                        .then(res => {
+
+                            this.setState({
+                                article: res.data.article,
+                                status: 'deleted'
+                            });
+
+                            swal(
+                                'Artículo borrado',
+                                'El artículo se ha borrado correctamente',
+                                'success'
+                            );
+
+
+                        });
+                } else {
+                    swal(
+                        'Acción cancelada',
+                        'El artículo no se ha borrado',
+                        'info'
+                    );
+                }
+            });
+
+    }
+
     render() {
+
+        //hacemos una comprobacion para ver si hemos borrado un articulo y redirigimos
+        if (this.state.status === 'deleted') {
+            return <Redirect to="/blog" />
+        }
+
+
         var article = this.state.article;
 
         return (
@@ -57,7 +104,7 @@ class Article extends Component {
                             <h1 className="subheader">{this.state.article.title}</h1>
                             <div className="image-wrap">
 
-                                { article.image !== null ? (
+                                {article.image !== null ? (
                                     <img src={"localhost:3000/get-image/" + article.image} alt={article.title} />
                                 ) : (
                                         <img src="https://hipertextual.com/files/2020/08/hipertextual-pronto-podras-ver-mulan-disney-plus-pero-no-gratis-2020666122-scaled.jpg" alt="Sin imagen" />
@@ -74,8 +121,15 @@ class Article extends Component {
                                 {article.content}
                             </p>
 
-                            <Link to="/blog" className="btn-warning">Eliminar</Link>
-                            <Link to="/blog" className="btn-warning">Editar</Link>
+                            <button onClick={
+                                () => {
+                                    this.deleteArticle(article._id);
+                                }
+                            }
+
+                                className="btn-warning">Eliminar</button>
+                            
+                            <Link to={"/blog/editar/" + article._id} className="btn-warning">Editar</Link>
 
                             <div id="clearfix"></div>
                         </article>
