@@ -1,33 +1,28 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>{{ texto }}</h2>
-
-    <MiComponente />
-    
-  </div>
+  <section id="content">
+    <h2 class="subheader">{{ texto }}</h2>
+    <div class="hello">
+      
+    </div>
+  </section>
 </template>
 
 
 
 <script>
 
-import MiComponente from './MiComponente.vue'
 
 export default {
-  name: 'HelloWorld',
-  components:{
-    MiComponente
-  },
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
-  data(){
+  data() {
     return {
-      texto: "Hola mundo desde el componente!"
-    }
-  }
-}
+      texto: "Hola mundo desde el componente!",
+    };
+  },
+};
 </script>
 
 
@@ -49,3 +44,4 @@ a {
   color: #42b983;
 }
 </style>
+
