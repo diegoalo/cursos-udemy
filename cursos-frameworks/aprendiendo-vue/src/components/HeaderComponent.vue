@@ -25,7 +25,7 @@
                         </li>
 
                         <li>
-                            <router-link to="/pagina">Página 1</router-link>
+                            <router-link :to="{name: 'pagina', params: {id: 'Cuentame inicia su rodaje'}}">Página 1</router-link>
                         </li>
                         <li>
                             <router-link to="/mi-componente">Página 2</router-link>
