@@ -9,6 +9,7 @@ import HelloWorld from './components/HelloWorld.vue';
 import Blog from './components/Blog.vue';
 import Formulario from './components/Formulario.vue';
 import Pagina from './components/Pagina.vue';
+import ErrorComponent from './components/ErrorComponent';
 
 
 
@@ -29,6 +30,7 @@ const routes = [
     {path: '/mi-componente', component: MiComponente},
     {path: '/', component: LastArticles},
     {path: '/hola-mundo', component: HelloWorld},
+    {path: '*', component: ErrorComponent}
 
 
 ];
